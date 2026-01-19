@@ -13,18 +13,18 @@
 }
 
 :root {
-    /* Colors - Minimal & Clean */
-    --primary-color: #2c3e50;
-    --secondary-color: #e74c3c;
-    --accent-color: #3498db;
+    /* Colors - Nature/Mountain inspired (like wildbreathing.com) */
+    --primary-color: #2D5016;       /* Forest green */
+    --secondary-color: #4a7c2a;     /* Light forest green */
+    --accent-color: #D84315;        /* Mountain orange/red */
     
     /* Neutrals */
-    --text-primary: #2c3e50;
-    --text-secondary: #7f8c8d;
-    --text-light: #ecf0f1;
+    --text-primary: #1a3009;        /* Dark green */
+    --text-secondary: #5a6c50;      /* Muted green */
+    --text-light: #f5f5f0;          /* Warm white */
     --bg-white: #ffffff;
-    --bg-light: #f8f9fa;
-    --border-color: #e1e8ed;
+    --bg-light: #f8f9f5;            /* Subtle green-tinted background */
+    --border-color: #d8e3d0;        /* Light green border */
     
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -219,7 +219,7 @@ body {
 .day-time {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--secondary-color);
+    color: var(--accent-color);
 }
 
 /* Location */
@@ -300,7 +300,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     padding: var(--spacing-lg);
     border-radius: 16px;
@@ -431,7 +431,7 @@ body {
 }
 
 .contact-button.email {
-    background: var(--accent-color);
+    background: var(--primary-color);
     color: white;
 }
 
