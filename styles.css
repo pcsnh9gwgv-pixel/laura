@@ -330,10 +330,11 @@ body {
     z-index: 2;
     text-align: center;
     color: white;
-    padding: var(--spacing-md);
-    max-width: 1000px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    max-width: 1200px;
     margin: 0 auto;
     animation: fadeInUp 1s ease-out;
+    width: 100%;
 }
 
 .hero-title {
@@ -1214,6 +1215,8 @@ body {
     .hero-quote {
         font-size: 1rem;
         margin: var(--spacing-sm) auto;
+        padding: 0 var(--spacing-md);
+        max-width: 90%;
     }
 
     .hero-subtitle {
@@ -1315,6 +1318,8 @@ body {
     
     .hero-quote {
         font-size: 0.95rem;
+        padding: 0 var(--spacing-sm);
+        max-width: 95%;
     }
 
     .pricing-amount {
@@ -2632,8 +2637,9 @@ input[type="checkbox"]:checked + label .checkbox-check {
     margin: var(--spacing-md) auto;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     line-height: 1.7;
-    max-width: 700px;
+    max-width: 800px;
     font-weight: 300;
+    padding: 0 var(--spacing-sm);
 }
 
 .certifications-box {
@@ -3804,7 +3810,7 @@ html {
     }
     
     .hero-content {
-        padding: var(--spacing-md);
+        padding: var(--spacing-md) var(--spacing-sm);
     }
     
     .hero-title {
