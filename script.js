@@ -2,6 +2,38 @@
 // WILD FITNESS - MINIMAL JAVASCRIPT
 // ============================================
 
+// ============================================
+// Mobile Navigation Toggle
+// ============================================
+const navToggle = document.getElementById('navToggle');
+const mainNav = document.getElementById('mainNav');
+const navList = mainNav.querySelector('.nav-list');
+
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navList.classList.toggle('active');
+        navToggle.setAttribute('aria-expanded', 
+            navList.classList.contains('active'));
+    });
+
+    // Close menu when clicking on a link
+    const navLinks = navList.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mainNav.contains(e.target) && navList.classList.contains('active')) {
+            navList.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
+
 // Smooth scroll for all anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {

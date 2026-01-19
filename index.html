@@ -3,20 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wild Fitness - Entrenament funcional trail running a Fonteta (Baix Empordà). Classes presencials en grup reduït.">
-    <meta name="keywords" content="trail running, entrenament funcional, Baix Empordà, Fonteta, entrenament muntanya">
-    <title>Wild Fitness - Entrenament Funcional Trail</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Entrenament funcional trail running a Fonteta, Baix Empordà. Classes presencials en grup reduït. Primera sessió gratuïta. 35€/mes per 2 sessions setmanals.">
+    <meta name="keywords" content="trail running Baix Empordà, entrenament funcional Fonteta, running La Bisbal, entrenament muntanya Catalunya, classes trail running">
+    <meta name="author" content="Wild Fitness">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Catalan">
+    
+    <!-- Open Graph Meta Tags (Redes Sociales) -->
+    <meta property="og:title" content="Wild Fitness - Entrenament Funcional Trail a Fonteta">
+    <meta property="og:description" content="Classes presencials de trail running i entrenament funcional. Grup reduït màx. 12 persones. Primera sessió gratuïta.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wild-fitness.com">
+    <meta property="og:image" content="https://wild-fitness.com/og-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wild Fitness - Entrenament Trail">
+    <meta name="twitter:description" content="Classes de trail running a Fonteta, Baix Empordà">
+    
+    <title>Wild Fitness - Entrenament Funcional Trail a Fonteta (Baix Empordà)</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://wild-fitness.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsActivityLocation",
+      "name": "Wild Fitness",
+      "description": "Entrenament funcional trail running a Fonteta, Baix Empordà",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Fonteta",
+        "addressRegion": "Baix Empordà",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "41.9579",
+        "longitude": "3.0406"
+      },
+      "priceRange": "35€/mes",
+      "openingHours": "Mo,We 17:20-18:30",
+      "telephone": "+34600000000",
+      "email": "info@wild-fitness.com"
+    }
+    </script>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with Navigation -->
     <header class="header">
         <div class="container">
-            <div class="logo">
-                <span class="logo-text">WILD FITNESS</span>
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/" aria-label="Wild Fitness - Inici">
+                        <span class="logo-text">WILD FITNESS</span>
+                    </a>
+                </div>
+                
+                <nav class="nav" id="mainNav" aria-label="Navegació principal">
+                    <ul class="nav-list">
+                        <li><a href="#horaris" class="nav-link">Horaris</a></li>
+                        <li><a href="#entrenament" class="nav-link">Entrenament</a></li>
+                        <li><a href="#preus" class="nav-link">Preus</a></li>
+                        <li><a href="blog.html" class="nav-link">Blog</a></li>
+                        <li><a href="#contacte" class="nav-link nav-cta">Contacta</a></li>
+                    </ul>
+                    <button class="nav-toggle" id="navToggle" aria-label="Menú de navegació" aria-expanded="false">
+                        <span class="hamburger"></span>
+                    </button>
+                </nav>
             </div>
         </div>
     </header>
@@ -24,7 +94,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=1920&q=80" alt="Trail running en muntanya">
+            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=1920&q=80" alt="Trail running a la muntanya" loading="eager">
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
@@ -33,11 +103,11 @@
         </div>
     </section>
 
-    <!-- Horarios Section -->
-    <section class="schedule">
+    <!-- Schedule Section -->
+    <section class="schedule" id="horaris">
         <div class="container">
             <div class="schedule-header">
-                <span class="schedule-icon">📅</span>
+                <span class="schedule-icon" aria-hidden="true">📅</span>
                 <h2>Horaris</h2>
             </div>
 
@@ -49,16 +119,16 @@
                     <div class="schedule-days">
                         <div class="schedule-day">
                             <span class="day-name">Dilluns</span>
-                            <span class="day-time">17:20h</span>
+                            <time class="day-time" datetime="17:20">17:20h</time>
                         </div>
                         <div class="schedule-day">
                             <span class="day-name">Dimecres</span>
-                            <span class="day-time">17:20h</span>
+                            <time class="day-time" datetime="17:20">17:20h</time>
                         </div>
                     </div>
 
                     <div class="schedule-location">
-                        <div class="location-icon">📍</div>
+                        <div class="location-icon" aria-hidden="true">📍</div>
                         <div class="location-info">
                             <strong>Ubicació</strong>
                             <span>Fonteta, Baix Empordà</span>
@@ -67,40 +137,40 @@
                     </div>
                 </div>
 
-                <div class="schedule-features">
+                <div class="schedule-features" id="entrenament">
                     <h3>Què Treballem</h3>
                     <p class="features-subtitle">Sessions d'1h - 1h 15min</p>
                     
                     <div class="features-list">
-                        <div class="feature-item">
-                            <div class="feature-icon">💪</div>
+                        <article class="feature-item">
+                            <div class="feature-icon" aria-hidden="true">💪</div>
                             <div class="feature-content">
                                 <strong>Força Funcional</strong>
                                 <p>Exercicis específics per trail</p>
                             </div>
-                        </div>
+                        </article>
                         
-                        <div class="feature-item">
-                            <div class="feature-icon">🏃</div>
+                        <article class="feature-item">
+                            <div class="feature-icon" aria-hidden="true">🏃</div>
                             <div class="feature-content">
                                 <strong>Tècnica de Carrera</strong>
                                 <p>Pujades, baixades i terreny tècnic</p>
                             </div>
-                        </div>
+                        </article>
                         
-                        <div class="feature-item">
-                            <div class="feature-icon">⛰️</div>
+                        <article class="feature-item">
+                            <div class="feature-icon" aria-hidden="true">⛰️</div>
                             <div class="feature-content">
                                 <strong>Entrenament en Carrera</strong>
                                 <p>Sortides i treball de resistència</p>
                             </div>
-                        </div>
+                        </article>
                     </div>
                 </div>
             </div>
 
             <!-- Pricing -->
-            <div class="pricing">
+            <div class="pricing" id="preus">
                 <div class="pricing-highlight">
                     <span class="pricing-label">Primera sessió GRATUÏTA</span>
                     <span class="pricing-note">Prova sense compromís</span>
@@ -114,46 +184,99 @@
     </section>
 
     <!-- Gallery Section -->
-    <section class="gallery">
+    <section class="gallery" aria-label="Galeria d'imatges">
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&q=80" alt="Grup entrenament">
+            <figure class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&q=80" alt="Grup d'entrenament trail running" loading="lazy">
+            </figure>
+            <figure class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80" alt="Runner en sendero de montaña" loading="lazy">
+            </figure>
+            <figure class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80" alt="Entrenament de força funcional" loading="lazy">
+            </figure>
+        </div>
+    </section>
+
+    <!-- Blog Preview Section -->
+    <section class="blog-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Últims Articles del Blog</h2>
+                <p>Consells i guies per millorar el teu rendiment</p>
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80" alt="Trail running">
+            
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80" alt="Preparació per trail running" loading="lazy">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Entrenament</span>
+                        <h3>Com Preparar-te per la Teva Primera Trail</h3>
+                        <p>Descobreix els millors consells per començar en el món del trail running...</p>
+                        <a href="blog.html#article-1" class="blog-link">Llegir més →</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&q=80" alt="Nutrició per runners" loading="lazy">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Nutrició</span>
+                        <h3>Nutrició Esportiva per Trail Runners</h3>
+                        <p>Què menjar abans, durant i després dels teus entrenaments...</p>
+                        <a href="blog.html#article-2" class="blog-link">Llegir més →</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&q=80" alt="Exercicis de força" loading="lazy">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Tècnica</span>
+                        <h3>5 Exercicis de Força Essencials</h3>
+                        <p>Els millors exercicis per millorar la teva potència en pujades...</p>
+                        <a href="blog.html#article-3" class="blog-link">Llegir més →</a>
+                    </div>
+                </article>
             </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80" alt="Entrenament força">
+            
+            <div class="blog-cta">
+                <a href="blog.html" class="btn-primary">Veure Tots els Articles</a>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact">
+    <section class="contact" id="contacte">
         <div class="container">
             <div class="contact-content">
                 <h2>Contacte</h2>
                 <p class="contact-subtitle">Vols provar una sessió gratuïta?</p>
                 
                 <div class="contact-methods">
-                    <a href="https://wa.me/34600000000" class="contact-button whatsapp">
-                        <span class="contact-icon">📱</span>
+                    <a href="https://wa.me/34600000000" class="contact-button whatsapp" rel="noopener" aria-label="Contacta per WhatsApp">
+                        <span class="contact-icon" aria-hidden="true">📱</span>
                         <span>WhatsApp</span>
                     </a>
-                    <a href="mailto:info@wild-fitness.com" class="contact-button email">
-                        <span class="contact-icon">📧</span>
+                    <a href="mailto:info@wild-fitness.com" class="contact-button email" aria-label="Envia un email">
+                        <span class="contact-icon" aria-hidden="true">📧</span>
                         <span>Email</span>
                     </a>
-                    <a href="https://instagram.com/wildfitness" class="contact-button instagram" target="_blank">
-                        <span class="contact-icon">📷</span>
+                    <a href="https://instagram.com/wildfitness" class="contact-button instagram" target="_blank" rel="noopener" aria-label="Segueix-nos a Instagram">
+                        <span class="contact-icon" aria-hidden="true">📷</span>
                         <span>Instagram</span>
                     </a>
                 </div>
 
-                <div class="contact-info">
-                    <p><strong>Email:</strong> info@wild-fitness.com</p>
-                    <p><strong>Telèfon:</strong> +34 600 000 000</p>
-                </div>
+                <address class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:info@wild-fitness.com">info@wild-fitness.com</a></p>
+                    <p><strong>Telèfon:</strong> <a href="tel:+34600000000">+34 600 000 000</a></p>
+                    <p><strong>Ubicació:</strong> Fonteta, Baix Empordà</p>
+                </address>
             </div>
         </div>
     </section>
@@ -161,8 +284,36 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Wild Fitness - Entrenament Funcional Trail</p>
-            <p class="footer-location">Fonteta, Baix Empordà</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">WILD FITNESS</span>
+                    <p>Entrenament funcional trail a Fonteta</p>
+                </div>
+                
+                <nav class="footer-nav" aria-label="Navegació del peu de pàgina">
+                    <h4>Navegació</h4>
+                    <ul>
+                        <li><a href="#horaris">Horaris</a></li>
+                        <li><a href="#entrenament">Entrenament</a></li>
+                        <li><a href="#preus">Preus</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="footer-legal">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/politica-privacitat.html">Política de Privacitat</a></li>
+                        <li><a href="/avis-legal.html">Avís Legal</a></li>
+                        <li><a href="/cookies.html">Política de Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Wild Fitness - Entrenament Funcional Trail</p>
+                <p class="footer-location">Fonteta, Baix Empordà</p>
+            </div>
         </div>
     </footer>
 
