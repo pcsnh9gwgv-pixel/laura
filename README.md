@@ -1,12 +1,12 @@
-# Wild Breathing - Laura Ramírez | Entrenadora Personal & Guia de Muntanya
+# Wild Fitness - Laura Ramírez | Entrenadora Personal & Guia de Muntanya
 
-![Wild Breathing](https://img.shields.io/badge/Mountain-Training-2D5016?style=for-the-badge)
+![Wild Fitness](https://img.shields.io/badge/Mountain-Training-2D5016?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Active-4CAF50?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Web-D84315?style=for-the-badge)
 
 ## 🏔️ Sobre el Proyecto
 
-**Wild Breathing** és la plataforma web professional de Laura Ramírez, entrenadora personal independent especialitzada en entrenament de força funcional i trail running. Certificada oficialment pel Govern de Catalunya (ROPEC 062645).
+**Wild Fitness** és la plataforma web professional de Laura Ramírez, entrenadora personal independent especialitzada en entrenament de força funcional i trail running. Certificada oficialment pel Govern de Catalunya (ROPEC 062645).
 
 ## 👤 Sobre Laura Ramírez
 
@@ -243,4 +243,4 @@ Para agregar Google Analytics, añade antes de `</head>`:
 
 **Hecho con 💚 para los amantes de la montaña**
 
-🏔️ **Wild Breathing** - Laura Ramírez | Entrenadora Personal & Guia de Muntanya
+🏔️ **Wild Fitness** - Laura Ramírez | Entrenadora Personal & Guia de Muntanya

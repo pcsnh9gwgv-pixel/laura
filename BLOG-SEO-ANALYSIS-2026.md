@@ -1,4 +1,4 @@
-# 📊 Análisis SEO del Blog - Wild Breathing 2026
+# 📊 Análisis SEO del Blog - Wild Fitness 2026
 
 **Fecha de análisis**: 19 de Enero de 2026  
 **Analizado por**: GenSpark AI Developer  
@@ -262,7 +262,7 @@
      - ¿Es gratis o hay que pagar?
      - ¿Grupos mixtos o separados por género?
      - ¿Cómo lidiar con diferentes objetivos en grupo?
-     - ¿Wild Breathing ofrece entrenamientos grupo?
+     - ¿Wild Fitness ofrece entrenamientos grupo?
   
   5. **Expandir Testimonios Existentes** (~53 palabras)
      - Más detalles en los testimonios actuales
@@ -469,7 +469,7 @@ Todos los artículos expandidos deben incluir:
 - ✅ **Cuerpo principal con subsecciones** (1,500-2,000 palabras)
 - ✅ **FAQ Section** (600-800 palabras, 8-10 preguntas)
 - ✅ **Testimonios** (300-500 palabras, 3-4 personas)
-- ✅ **Conclusión + CTA Wild Breathing** (100-150 palabras)
+- ✅ **Conclusión + CTA Wild Fitness** (100-150 palabras)
 
 ### 3. Keywords Strategy
 
@@ -478,7 +478,7 @@ Todos los artículos expandidos deben incluir:
 - 3-5 keywords secundarias (densidad 0.5-1%)
 - 10-15 long-tail keywords naturales
 - Menciones geográficas: Catalunya, Girona, Barcelona, Pirineus
-- Menciones marca: Wild Breathing, Laura Ramírez
+- Menciones marca: Wild Fitness, Laura Ramírez
 
 ### 4. Internal Linking Strategy
 
