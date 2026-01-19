@@ -40,13 +40,9 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 
-    // Hide/show header on scroll (optional)
-    if (currentScroll > lastScroll && currentScroll > 500) {
-        header.style.transform = 'translateY(-100%)';
-    } else {
-        header.style.transform = 'translateY(0)';
-    }
-
+    // Keep header always visible (sticky)
+    // Removed hide/show behavior to maintain sticky header at all times
+    
     lastScroll = currentScroll;
 });
 

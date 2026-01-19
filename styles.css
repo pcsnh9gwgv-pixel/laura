@@ -178,10 +178,11 @@ body {
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     backdrop-filter: blur(20px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
     transition: var(--transition);
+    will-change: padding, box-shadow;
 }
 
 .header.scrolled {
