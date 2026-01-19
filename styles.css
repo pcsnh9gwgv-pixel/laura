@@ -337,7 +337,7 @@ body {
 }
 
 .hero-title {
-    font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
     font-weight: 700;
     margin-bottom: var(--spacing-md);
     letter-spacing: -1px;
@@ -486,12 +486,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     animation: bounce 2s ease-in-out infinite;
     cursor: pointer;
     z-index: 10;
     color: white;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     border-radius: var(--radius-full);
@@ -504,14 +504,14 @@ body {
 }
 
 .scroll-text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 400;
     opacity: 0.9;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .scroll-arrow {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     opacity: 0.8;
     transition: var(--transition);
 }
@@ -1207,7 +1207,7 @@ body {
     }
 
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2rem;
         letter-spacing: -0.5px;
     }
     
@@ -1294,7 +1294,7 @@ body {
     }
 
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .schedule-header h2 {
