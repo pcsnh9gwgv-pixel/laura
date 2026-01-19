@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Contacta amb Laura Ramírez - Reserva la teva valoració inicial gratuïta. Entrenament personalitzat de trail running i força funcional a Catalunya.">
+    <meta name="keywords" content="contacte Laura Ramírez, valoració gratuïta trail running, entrenador personal Catalunya, reserva sessió entrenament">
+    <meta name="author" content="Laura Ramírez - Wild Fitness">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#2d7d7d">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Contacte - Wild Fitness | Laura Ramírez">
+    <meta property="og:description" content="Reserva la teva valoració inicial gratuïta. Entrenament personalitzat de trail running i força funcional.">
+    <meta property="og:url" content="https://wildbreathing.com/contacte.html">
+    <meta property="og:image" content="https://wildbreathing.com/og-image.jpg">
+    
+    <title>Contacte - Reserva la teva Valoració Gratuïta | Wild Fitness</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://wildbreathing.com/contacte.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header" id="mainHeader">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/" aria-label="Wild Fitness - Inici">
+                        <span class="logo-icon">🏔️</span>
+                        <span class="logo-text">WILD FITNESS</span>
+                    </a>
+                </div>
+                <nav class="nav" id="mainNav">
+                    <a href="/" class="nav-link">Inici</a>
+                    <a href="/#sobre-mi" class="nav-link">Sobre Laura</a>
+                    <a href="/blog.html" class="nav-link">Blog</a>
+                    <a href="/contacte.html" class="nav-link active">Contacte</a>
+                    <a href="https://wa.me/34640915772" class="btn-cta" target="_blank">
+                        <span>📱</span> WhatsApp
+                    </a>
+                </nav>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="contact-hero-content">
+                <h1 class="contact-title">Parlem dels teus objectius</h1>
+                <p class="contact-subtitle">Reserva la teva valoració inicial <strong>gratuïta</strong> i sense compromís</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
+                    <h2 class="section-title">Reserva la teva valoració gratuïta</h2>
+                    <p class="form-intro">Explica'm què busques i et contactaré en menys de 24h per agendar la teva valoració inicial.</p>
+                    
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" required placeholder="El teu nom">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="el.teu.email@exemple.cat">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Telèfon *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="640 915 772">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Ubicació</label>
+                            <select id="location" name="location">
+                                <option value="">Selecciona una opció...</option>
+                                <option value="barcelona">Barcelona</option>
+                                <option value="girona">Girona</option>
+                                <option value="online">Online</option>
+                                <option value="altre">Altra ubicació</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Què t'interessa?</label>
+                            <select id="service" name="service">
+                                <option value="">Selecciona un servei...</option>
+                                <option value="trail">Trail Running</option>
+                                <option value="forca">Entrenament de Força</option>
+                                <option value="trekking">Trekking Guiat</option>
+                                <option value="online">Entrenament Online</option>
+                                <option value="mixte">Entrenament Mixt</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Explica'm els teus objectius *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Conta'm què vols aconseguir, el teu nivell actual, disponibilitat..."></textarea>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="privacy" required>
+                                <span>He llegit i accepto la <a href="/politica-privacitat.html" target="_blank">Política de Privacitat</a> *</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn-submit">
+                            <span>Enviar Sol·licitud</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+
+                        <p class="form-note">* Camps obligatoris</p>
+                    </form>
+                </div>
+
+                <!-- Contact Info Sidebar -->
+                <div class="contact-sidebar">
+                    <!-- WhatsApp Direct -->
+                    <div class="contact-card whatsapp-card">
+                        <div class="card-icon">📱</div>
+                        <h3>Resposta Immediata</h3>
+                        <h4>WhatsApp Directe</h4>
+                        <p>Prefereixes parlar directament? Escriu-me per WhatsApp i et respondo el més aviat possible.</p>
+                        <a href="https://wa.me/34640915772" class="btn-whatsapp" target="_blank">
+                            Obrir WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Contact Details -->
+                    <div class="contact-card">
+                        <h3>Dades de contacte</h3>
+                        <div class="contact-detail">
+                            <span class="detail-icon">📧</span>
+                            <div>
+                                <strong>Email</strong>
+                                <a href="mailto:info@wildbreathing.com">info@wildbreathing.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="detail-icon">📍</span>
+                            <div>
+                                <strong>Ubicació</strong>
+                                <span>Barcelona / Girona, Catalunya</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <span class="detail-icon">🕐</span>
+                            <div>
+                                <strong>Horari</strong>
+                                <span>Dilluns - Dissabte: 8:00 - 20:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Commitment Card -->
+                    <div class="contact-card commitment-card">
+                        <h3>El meu compromís</h3>
+                        <ul class="commitment-list">
+                            <li>✓ Resposta en menys de 24h</li>
+                            <li>✓ Valoració inicial sense compromís</li>
+                            <li>✓ Plans 100% personalitzats</li>
+                            <li>✓ Seguiment continu</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title centered">Preguntes freqüents</h2>
+            <p class="section-subtitle centered">Tens dubtes?</p>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">La valoració inicial és realment gratuïta?</h3>
+                    <p class="faq-answer">Sí, 100% gratuïta i sense compromís. És una sessió on avaluem la teva condició física actual, els teus objectius i dissenyem un pla personalitzat. No hi ha obligació de contractar cap servei.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">On es realitzen els entrenaments presencials?</h3>
+                    <p class="faq-answer">Treballo a Barcelona i Girona. Depenent de la teva ubicació, podem entrenar en parcs, instal·lacions esportives o directament en muntanya. També ofereixo plans 100% online.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Quant de temps triga en respondre?</h3>
+                    <p class="faq-answer">Respongo tots els missatges en menys de 24 hores. Si m'escrius per WhatsApp, normalment respongo en poques hores durant l'horari laboral.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Necessito experiència prèvia en trail o muntanya?</h3>
+                    <p class="faq-answer">No, treballo amb persones de tots els nivells. Des de principiants que volen iniciar-se fins atletes avançats que busquen millorar el seu rendiment. Tot s'adapta al teu nivell actual.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🏔️</span>
+                        <span class="logo-text">WILD FITNESS</span>
+                    </div>
+                    <p class="footer-tagline">Entrenament de Força, trail running i trekking amb Laura Ramírez</p>
+                    <p class="footer-location">Girona, Barcelona i online</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Serveis</h4>
+                        <ul>
+                            <li><a href="/#serveis">Entrenament de Força</a></li>
+                            <li><a href="/#serveis">Trail Running</a></li>
+                            <li><a href="/#serveis">Trekking Guiat</a></li>
+                            <li><a href="/#serveis">Yoga Complement</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Contacte</h4>
+                        <ul>
+                            <li>📞 <a href="tel:+34640915772">640 915 772</a></li>
+                            <li>📱 <a href="https://wa.me/34640915772" target="_blank">WhatsApp</a></li>
+                            <li>📧 <a href="mailto:info@wildbreathing.com">info@wildbreathing.com</a></li>
+                            <li>💳 Bizum: 640 915 772</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Enllaços</h4>
+                        <ul>
+                            <li><a href="/">Inici</a></li>
+                            <li><a href="/#sobre-mi">Sobre Laura</a></li>
+                            <li><a href="/contacte.html">Contacte</a></li>
+                            <li><a href="/blog.html">Blog</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="/avis-legal.html">Avís Legal</a></li>
+                            <li><a href="/politica-privacitat.html">Política de Privacitat</a></li>
+                            <li><a href="/cookies.html">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Wild Fitness - Laura Ramírez | Entrenadora Personal & Guia de Muntanya</p>
+                <p class="footer-certification">ROPEC 062645 - Certificació Oficial Generalitat de Catalunya</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Form handling
+        const contactForm = document.getElementById('contactForm');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                // You can add custom validation or tracking here
+                console.log('Form submitted');
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
