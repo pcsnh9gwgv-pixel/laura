@@ -338,11 +338,11 @@ body {
 }
 
 .hero-title {
-    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-size: clamp(1.4rem, 3vw, 2.5rem);
     font-weight: 700;
-    margin-bottom: var(--spacing-md);
-    letter-spacing: -1px;
-    line-height: 1.15;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: -0.3px;
+    line-height: 1.2;
     text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
     animation: fadeInUp 1s ease-out 0.2s both;
 }
@@ -1297,7 +1297,7 @@ body {
     }
 
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
     .schedule-header h2 {
@@ -3814,7 +3814,7 @@ html {
     }
     
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.6rem;
         margin-bottom: var(--spacing-sm);
     }
     
@@ -3995,7 +3995,7 @@ html {
 /* Extra Small Devices (iPhone SE, older Android) */
 @media (max-width: 375px) {
     .hero-title {
-        font-size: 1.75rem;
+        font-size: 1.4rem;
     }
     
     .hero-subtitle {
@@ -4061,7 +4061,7 @@ html {
     }
     
     .hero-title {
-        font-size: 1.75rem;
+        font-size: 1.4rem;
     }
     
     .hero-subtitle {
