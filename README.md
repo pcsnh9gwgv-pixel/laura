@@ -15,7 +15,8 @@
 - **Performance**: Carga rápida y optimizada
 - **Programas de Entrenamiento**: 3 niveles diferentes adaptados a cada atleta
 - **Sección de Testimonios**: Historias reales de atletas
-- **Formulario de Contacto**: Sistema de contacto integrado
+- **📧 Formulario de Contacto Completo**: Sistema integrado con base de datos externa
+- **Gestión de Clientes**: Almacenamiento automático en Formspree o Google Sheets
 - **Animaciones Suaves**: Experiencia de usuario fluida y profesional
 
 ## 🚀 Tecnologías
@@ -31,9 +32,11 @@
 ```
 wild-fitness/
 ├── index.html          # Página principal
+├── blog.html           # Página de blog
 ├── styles.css          # Estilos CSS
 ├── script.js           # JavaScript
 ├── CNAME              # Configuración de dominio personalizado
+├── FORMULARIO-CONTACTO.md  # Guía de configuración del formulario
 └── README.md          # Documentación
 ```
 
@@ -61,24 +64,49 @@ CNAME www wild-fitness.com
 
 ## 🎨 Paleta de Colores
 
-- **Primary Green**: `#2D5016` (Verde bosque)
-- **Secondary Orange**: `#D84315` (Naranja montaña)
-- **Accent**: `#FFA726` (Amarillo cálido)
-- **Text**: `#212121` (Negro principal)
-- **Background**: `#FAFAFA` (Gris claro)
+- **Primary Teal**: `#2d7d7d` (Verde azulado profundo)
+- **Secondary Turquoise**: `#3fb5b5` (Turquesa brillante)
+- **Accent Light**: `#5fcaca` (Turquesa claro)
+- **Overlay**: `rgba(45, 125, 125, 0.75)` (Capa turquesa)
+- **Text**: `#1e293b` (Negro principal)
+- **Background**: `#f0f9f9` (Gris-turquesa muy claro)
 
 ## 📱 Secciones
 
-1. **Hero Section**: Impacto visual inmediato con CTA
-2. **Features**: 4 características principales del servicio
-3. **Programas**: 3 niveles de entrenamiento con precios
-4. **Sobre Mí**: Historia del entrenador y certificaciones
-5. **Testimonios**: 3 historias reales de clientes
-6. **CTA**: Llamada a la acción para consulta gratuita
-7. **Contacto**: Formulario y datos de contacto
-8. **Footer**: Links, contacto y legal
+1. **Hero Section**: Impacto visual con imagen de montaña y overlay turquesa
+2. **Badges de Credibilidad**: Certificación ROPEC, 50+ alumnos, contenido exclusivo
+3. **Botones de Acción**: Prova Gratuïta y WhatsApp directo
+4. **Features**: 4 características principales del servicio
+5. **Programas**: 3 niveles de entrenamiento con precios
+6. **Sobre Mí**: Historia del entrenador y certificaciones
+7. **Testimonios**: 3 historias reales de clientes
+8. **Galería**: Imágenes de entrenamiento
+9. **Blog Preview**: Últimos artículos del blog
+10. **📧 Formulario de Contacto Completo**: Con gestión de datos externa
+11. **CTA**: Llamada a la acción para consulta gratuita
+12. **Footer**: Links, contacto y legal
 
 ## 🔧 Personalización
+
+### Configurar el Formulario de Contacto
+
+**IMPORTANTE:** El formulario necesita configuración para funcionar.
+
+**Opción 1 - Formspree (Recomendado):**
+1. Regístrate gratis en https://formspree.io/
+2. Crea un nuevo formulario
+3. Copia tu Form ID (ej: `xvgopbld`)
+4. En `index.html` línea ~264, reemplaza:
+   ```html
+   action="https://formspree.io/f/YOUR_FORM_ID"
+   ```
+   por:
+   ```html
+   action="https://formspree.io/f/xvgopbld"
+   ```
+
+**Opción 2 - Google Sheets:**
+Ver documentación completa en `FORMULARIO-CONTACTO.md`
 
 ### Actualizar Información de Contacto
 
@@ -138,12 +166,16 @@ Para agregar Google Analytics, añade antes de `</head>`:
 
 ## 🚀 Próximas Mejoras
 
-- [ ] Blog de consejos de entrenamiento
+- [x] Formulario de contacto completo con BD externa
+- [x] Diseño turquesa/teal moderno
+- [x] Hero section mejorado con badges
+- [ ] Blog de consejos de entrenamiento ✅ (Implementado)
 - [ ] Sistema de reservas online
 - [ ] Área de cliente privada
 - [ ] Calculadora de nivel fitness
 - [ ] Integración con Strava
 - [ ] Tienda online de planes
+- [ ] CRM integrado para gestión de clientes
 
 ## 📝 Licencia
 

@@ -98,8 +98,28 @@
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
-            <h1 class="hero-title">Entrenament Funcional Trail</h1>
-            <p class="hero-subtitle">Classes presencials a Fonteta (Baix Empordà)</p>
+            <h1 class="hero-title">Entrena fort per moure't segur a la muntanya</h1>
+            <p class="hero-subtitle">Guia de muntanya i entrenadora personal.<br>Força funcional, trail i sortides guiades a BCN i Girona.</p>
+            
+            <div class="hero-actions">
+                <a href="#contacte" class="btn-primary">🎁 Prova Gratuïta</a>
+                <a href="https://wa.me/34600000000" class="btn-whatsapp" rel="noopener">💬 WhatsApp</a>
+            </div>
+
+            <div class="hero-badges">
+                <div class="badge badge-certification">
+                    <span class="badge-icon">⛰️</span>
+                    <span class="badge-text">ROPEC 062645 Entrenadora</span>
+                </div>
+                <div class="badge badge-students">
+                    <span class="badge-icon">👥</span>
+                    <span class="badge-text">50+ persones entrenades</span>
+                </div>
+                <div class="badge badge-content">
+                    <span class="badge-icon">🎥</span>
+                    <span class="badge-text">Contingut exclusiu</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -253,30 +273,78 @@
     <!-- Contact Section -->
     <section class="contact" id="contacte">
         <div class="container">
-            <div class="contact-content">
-                <h2>Contacte</h2>
-                <p class="contact-subtitle">Vols provar una sessió gratuïta?</p>
-                
-                <div class="contact-methods">
-                    <a href="https://wa.me/34600000000" class="contact-button whatsapp" rel="noopener" aria-label="Contacta per WhatsApp">
-                        <span class="contact-icon" aria-hidden="true">📱</span>
-                        <span>WhatsApp</span>
-                    </a>
-                    <a href="mailto:info@wild-fitness.com" class="contact-button email" aria-label="Envia un email">
-                        <span class="contact-icon" aria-hidden="true">📧</span>
-                        <span>Email</span>
-                    </a>
-                    <a href="https://instagram.com/wildfitness" class="contact-button instagram" target="_blank" rel="noopener" aria-label="Segueix-nos a Instagram">
-                        <span class="contact-icon" aria-hidden="true">📷</span>
-                        <span>Instagram</span>
-                    </a>
+            <div class="contact-wrapper">
+                <div class="contact-info-side">
+                    <h2>Contacte</h2>
+                    <p class="contact-subtitle">Vols provar una sessió gratuïta?</p>
+                    
+                    <div class="contact-methods">
+                        <a href="https://wa.me/34600000000" class="contact-button whatsapp" rel="noopener" aria-label="Contacta per WhatsApp">
+                            <span class="contact-icon" aria-hidden="true">📱</span>
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="mailto:info@wild-fitness.com" class="contact-button email" aria-label="Envia un email">
+                            <span class="contact-icon" aria-hidden="true">📧</span>
+                            <span>Email</span>
+                        </a>
+                        <a href="https://instagram.com/wildfitness" class="contact-button instagram" target="_blank" rel="noopener" aria-label="Segueix-nos a Instagram">
+                            <span class="contact-icon" aria-hidden="true">📷</span>
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+
+                    <address class="contact-info">
+                        <p><strong>Email:</strong> <a href="mailto:info@wild-fitness.com">info@wild-fitness.com</a></p>
+                        <p><strong>Telèfon:</strong> <a href="tel:+34600000000">+34 600 000 000</a></p>
+                        <p><strong>Ubicació:</strong> Fonteta, Baix Empordà</p>
+                    </address>
                 </div>
 
-                <address class="contact-info">
-                    <p><strong>Email:</strong> <a href="mailto:info@wild-fitness.com">info@wild-fitness.com</a></p>
-                    <p><strong>Telèfon:</strong> <a href="tel:+34600000000">+34 600 000 000</a></p>
-                    <p><strong>Ubicació:</strong> Fonteta, Baix Empordà</p>
-                </address>
+                <div class="contact-form-side">
+                    <h3>Envia'ns un missatge</h3>
+                    <p>Omple el formulari i et respondrem en menys de 24h</p>
+                    
+                    <form id="contactForm" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" required placeholder="El teu nom">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="el.teu.email@exemple.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Telèfon</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+34 600 000 000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="level">Nivell d'experiència</label>
+                            <select id="level" name="level">
+                                <option value="">Selecciona el teu nivell</option>
+                                <option value="beginner">Principiant - Primera vegada</option>
+                                <option value="intermediate">Intermedi - Tinc experiència</option>
+                                <option value="advanced">Avançat - Trail runner</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Missatge *</label>
+                            <textarea id="message" name="message" required rows="5" placeholder="Explica'ns els teus objectius..."></textarea>
+                        </div>
+
+                        <div class="form-group form-checkbox">
+                            <input type="checkbox" id="privacy" name="privacy" required>
+                            <label for="privacy">Accepto la <a href="/politica-privacitat.html" target="_blank">política de privacitat</a> *</label>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Enviar missatge</button>
+                        
+                        <div id="formStatus" class="form-status"></div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

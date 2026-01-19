@@ -1,7 +1,7 @@
 /* ============================================
    WILD FITNESS - MINIMAL DESIGN
    Inspired by wildbreathing.com
-   Version: 2.0 - Green Nature Palette
+   Version: 3.0 - Turquoise/Teal Mountain Palette
    Last Updated: 2024
    ============================================ */
 
@@ -15,18 +15,19 @@
 }
 
 :root {
-    /* Colors - Blue Ocean/Sky inspired */
-    --primary-color: #1e3a8a;       /* Deep blue */
-    --secondary-color: #3b82f6;     /* Bright blue */
-    --accent-color: #f97316;        /* Orange accent */
+    /* Colors - Turquoise/Teal Mountain inspired */
+    --primary-color: #2d7d7d;       /* Deep teal */
+    --secondary-color: #3fb5b5;     /* Bright turquoise */
+    --accent-color: #5fcaca;        /* Light turquoise */
+    --overlay-color: rgba(45, 125, 125, 0.75); /* Teal overlay */
     
     /* Neutrals */
     --text-primary: #1e293b;        /* Dark slate */
     --text-secondary: #64748b;      /* Slate gray */
     --text-light: #f8fafc;          /* Cool white */
     --bg-white: #ffffff;
-    --bg-light: #f1f5f9;            /* Light blue-gray background */
-    --border-color: #cbd5e1;        /* Light slate border */
+    --bg-light: #f0f9f9;            /* Light teal background */
+    --border-color: #b8e0e0;        /* Light teal border */
     
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -41,6 +42,7 @@
     /* Effects */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(45, 125, 125, 0.15);
     --transition: all 0.3s ease;
 }
 
@@ -92,8 +94,8 @@ body {
    ============================================ */
 .hero {
     position: relative;
-    height: 50vh;
-    min-height: 400px;
+    height: 85vh;
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,7 +122,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(44, 62, 80, 0.5), rgba(44, 62, 80, 0.7));
+    background: var(--overlay-color);
 }
 
 .hero-content {
@@ -129,19 +131,106 @@ body {
     text-align: center;
     color: white;
     padding: var(--spacing-md);
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 700;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
     letter-spacing: -1px;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
-    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     font-weight: 300;
     opacity: 0.95;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+}
+
+.btn-primary, .btn-whatsapp {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary {
+    background: var(--secondary-color);
+    color: white;
+    border: 2px solid var(--secondary-color);
+}
+
+.btn-primary:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-whatsapp {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.btn-whatsapp:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+.hero-badges {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-md);
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: var(--transition);
+}
+
+.badge:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.badge-icon {
+    font-size: 1.2rem;
+}
+
+.badge-text {
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 /* ============================================
@@ -386,14 +475,17 @@ body {
    ============================================ */
 .contact {
     padding: var(--spacing-xl) 0;
-    background: var(--bg-white);
+    background: var(--bg-light);
 }
 
-.contact-content {
-    text-align: center;
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--spacing-xl);
+    align-items: start;
 }
 
-.contact-content h2 {
+.contact-info-side h2 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary-color);
@@ -408,23 +500,23 @@ body {
 
 .contact-methods {
     display: flex;
-    justify-content: center;
-    gap: var(--spacing-md);
+    flex-direction: column;
+    gap: var(--spacing-sm);
     margin-bottom: var(--spacing-lg);
-    flex-wrap: wrap;
 }
 
 .contact-button {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
+    justify-content: center;
 }
 
 .contact-button.whatsapp {
@@ -460,6 +552,166 @@ body {
 .contact-info p {
     color: var(--text-secondary);
     margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-info a:hover {
+    color: var(--secondary-color);
+}
+
+/* Contact Form Styles */
+.contact-form-side h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.contact-form-side > p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.contact-form {
+    background: var(--bg-white);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    transition: var(--transition);
+    background: var(--bg-white);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(63, 181, 181, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: start;
+    gap: 0.5rem;
+}
+
+.form-checkbox input[type="checkbox"] {
+    width: auto;
+    margin-top: 0.25rem;
+    cursor: pointer;
+}
+
+.form-checkbox label {
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.form-checkbox label a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.form-checkbox label a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-submit:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+.btn-submit:disabled {
+    background: var(--border-color);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-status {
+    margin-top: var(--spacing-sm);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    display: none;
+}
+
+.form-status.success {
+    display: block;
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+
+.form-status.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
 }
 
 /* ============================================
@@ -486,6 +738,42 @@ body {
    RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 768px) {
+    .hero {
+        height: 70vh;
+        min-height: 500px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto var(--spacing-lg);
+    }
+
+    .btn-primary, .btn-whatsapp {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-badges {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .badge {
+        justify-content: center;
+    }
+
     .schedule-content {
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
@@ -504,6 +792,11 @@ body {
     .gallery-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
     }
 
     .contact-methods {
