@@ -4136,3 +4136,159 @@ input[type="button"] {
     touch-action: manipulation;
 }
 
+
+/* ============================================
+   FIREFOX iOS SPECIFIC FIXES
+   ============================================ */
+
+/* Firefox iOS Header Fix - Prevent top cutoff */
+@supports not (-webkit-touch-callout: none) {
+    /* This targets Firefox (non-webkit browsers) */
+    .header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding-top: env(safe-area-inset-top, 1rem) !important;
+    }
+    
+    /* Add padding to body to prevent content hiding under fixed header */
+    body {
+        padding-top: 70px;
+    }
+    
+    /* Adjust hero section for fixed header */
+    .hero {
+        margin-top: 0;
+    }
+    
+    /* All sections need adjustment for fixed header */
+    main,
+    .main-content {
+        margin-top: 0;
+    }
+}
+
+/* Firefox-specific safe area support */
+@-moz-document url-prefix() {
+    .header {
+        padding-top: max(1rem, env(safe-area-inset-top)) !important;
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+    
+    .hero {
+        padding-top: max(var(--spacing-xl), env(safe-area-inset-top));
+    }
+}
+
+/* Additional Firefox iOS viewport fixes */
+@media screen and (max-width: 768px) {
+    /* Firefox specific */
+    @supports not (-webkit-touch-callout: none) {
+        .header {
+            position: fixed !important;
+            z-index: 1000;
+        }
+        
+        /* Prevent header overlap on content */
+        .hero,
+        section:first-of-type {
+            margin-top: 70px;
+        }
+        
+        /* Fix for hero height calculation */
+        .hero {
+            min-height: calc(100vh - 70px);
+        }
+        
+        /* Ensure logo is visible */
+        .logo {
+            z-index: 1001;
+        }
+        
+        /* Navigation adjustments */
+        .nav-list {
+            top: 70px;
+            height: calc(100vh - 70px);
+        }
+    }
+}
+
+/* Firefox iOS specific viewport unit fix */
+@supports (-moz-appearance: none) {
+    html {
+        height: 100vh;
+        height: -moz-available;
+    }
+    
+    body {
+        min-height: 100vh;
+        min-height: -moz-available;
+    }
+    
+    .hero {
+        min-height: 100vh;
+        min-height: -moz-available;
+    }
+}
+
+
+/* ============================================
+   UNIVERSAL MOBILE HEADER FIX (Safari + Firefox iOS)
+   ============================================ */
+
+/* Force fixed positioning on all mobile browsers */
+@media screen and (max-width: 768px) {
+    .header {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1000;
+        padding-top: env(safe-area-inset-top, 0);
+    }
+    
+    /* Add spacing after header */
+    body {
+        padding-top: 70px;
+    }
+    
+    /* Hero adjustment */
+    .hero {
+        margin-top: 0 !important;
+        padding-top: calc(var(--spacing-xl) + env(safe-area-inset-top, 0));
+    }
+    
+    /* First section after header */
+    #inici {
+        scroll-margin-top: 70px;
+    }
+}
+
+/* Ensure header is always visible (all browsers) */
+.header {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Additional safe area padding for notched devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+    @media screen and (max-width: 768px) {
+        .header {
+            padding-top: calc(0.75rem + env(safe-area-inset-top));
+        }
+        
+        body {
+            padding-top: calc(70px + env(safe-area-inset-top));
+        }
+        
+        .hero {
+            min-height: calc(100vh - 70px - env(safe-area-inset-top));
+        }
+    }
+}
+
