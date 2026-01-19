@@ -40,13 +40,9 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 
-    // Hide/show header on scroll (optional)
-    if (currentScroll > lastScroll && currentScroll > 500) {
-        header.style.transform = 'translateY(-100%)';
-    } else {
-        header.style.transform = 'translateY(0)';
-    }
-
+    // Keep header always visible (sticky)
+    // Removed hide/show behavior to maintain sticky header at all times
+    
     lastScroll = currentScroll;
 });
 
@@ -580,6 +576,79 @@ document.addEventListener('keydown', (e) => {
             currentElement.style.outlineOffset = '2px';
         }
     }
+});
+
+// ============================================
+// Image Loading Optimization and Error Handling
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img');
+    let loadedImages = 0;
+    let failedImages = 0;
+    
+    images.forEach((img, index) => {
+        // Add loading state
+        img.classList.add('image-loading');
+        
+        // Create wrapper if not exists
+        if (!img.parentElement.classList.contains('image-wrapper')) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'image-wrapper';
+            img.parentNode.insertBefore(wrapper, img);
+            wrapper.appendChild(img);
+        }
+        
+        // Handle successful load
+        img.addEventListener('load', () => {
+            img.classList.remove('image-loading');
+            img.classList.add('image-loaded');
+            loadedImages++;
+            console.log(`✓ Image loaded: ${img.alt || 'unnamed'}`);
+        });
+        
+        // Handle loading errors with retry mechanism
+        img.addEventListener('error', () => {
+            failedImages++;
+            console.warn(`✗ Failed to load image: ${img.src}`);
+            
+            // Retry with different parameters
+            if (!img.dataset.retried) {
+                img.dataset.retried = 'true';
+                const originalSrc = img.src;
+                
+                // Try with different format
+                setTimeout(() => {
+                    const newSrc = originalSrc.replace('&fm=jpg', '&fm=webp').replace('?w=', '?auto=format&w=');
+                    console.log(`🔄 Retrying image with different format: ${newSrc}`);
+                    img.src = newSrc;
+                }, 1000);
+            } else {
+                // Show placeholder
+                img.classList.add('image-error');
+                const placeholder = document.createElement('div');
+                placeholder.className = 'image-placeholder';
+                placeholder.innerHTML = `
+                    <div class="placeholder-content">
+                        <span class="placeholder-icon">🖼️</span>
+                        <span class="placeholder-text">Imatge no disponible</span>
+                    </div>
+                `;
+                img.parentElement.appendChild(placeholder);
+            }
+        });
+        
+        // If image is already cached and loaded
+        if (img.complete && img.naturalHeight !== 0) {
+            img.classList.remove('image-loading');
+            img.classList.add('image-loaded');
+            loadedImages++;
+        }
+    });
+    
+    // Log summary after 5 seconds
+    setTimeout(() => {
+        console.log(`📊 Image Loading Summary: ${loadedImages} loaded, ${failedImages} failed, ${images.length} total`);
+    }, 5000);
 });
 
 // ============================================
