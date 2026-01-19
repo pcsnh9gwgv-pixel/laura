@@ -283,11 +283,12 @@ body {
 .hero {
     position: relative;
     height: 95vh;
-    min-height: 750px;
+    min-height: 800px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding-bottom: 120px; /* Espacio para el scroll indicator */
 }
 
 .hero-image {
@@ -478,7 +479,7 @@ body {
 /* Scroll indicator */
 .scroll-indicator {
     position: absolute;
-    bottom: 40px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -487,8 +488,18 @@ body {
     gap: 0.5rem;
     animation: bounce 2s ease-in-out infinite;
     cursor: pointer;
-    z-index: 3;
+    z-index: 10;
     color: white;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-full);
+    transition: var(--transition);
+}
+
+.scroll-indicator:hover {
+    background: rgba(0, 0, 0, 0.3);
+    transform: translateX(-50%) scale(1.05);
 }
 
 .scroll-text {
@@ -1190,7 +1201,8 @@ body {
 @media (max-width: 768px) {
     .hero {
         height: 85vh;
-        min-height: 600px;
+        min-height: 650px;
+        padding-bottom: 100px;
     }
 
     .hero-title {
@@ -1200,6 +1212,19 @@ body {
 
     .hero-subtitle {
         font-size: 1.1rem;
+    }
+    
+    .scroll-indicator {
+        bottom: 40px;
+        padding: 0.75rem 1rem;
+    }
+    
+    .scroll-text {
+        font-size: 0.85rem;
+    }
+    
+    .scroll-arrow {
+        font-size: 1.5rem;
     }
 
     .hero-actions {
@@ -1276,6 +1301,11 @@ body {
         --spacing-xl: 2.5rem;
         --spacing-lg: 2rem;
     }
+    
+    .hero {
+        min-height: 600px;
+        padding-bottom: 90px;
+    }
 
     .pricing-amount {
         font-size: 2.5rem;
@@ -1283,6 +1313,15 @@ body {
 
     .schedule-icon {
         font-size: 2.5rem;
+    }
+    
+    .scroll-indicator {
+        bottom: 30px;
+        padding: 0.6rem 0.9rem;
+    }
+    
+    .scroll-text {
+        font-size: 0.8rem;
     }
 }
 
