@@ -1808,6 +1808,7 @@ a, button, .feature-item, .gallery-item img {
         max-width: 320px; /* Máximo 320px para pantallas grandes */
         height: calc(100vh - 70px);
         background: var(--bg-white);
+        display: flex !important; /* Forzar display flex */
         flex-direction: column;
         justify-content: flex-start;
         padding: var(--spacing-lg);
@@ -1821,14 +1822,50 @@ a, button, .feature-item, .gallery-item img {
     .nav-list.active {
         transform: translateX(0);
     }
+    
+    /* Asegurar que los li sean visibles */
+    .nav-list li {
+        display: block !important;
+        width: 100%;
+        margin: 0.5rem 0;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
 
     .nav-link {
         width: 100%;
         padding: var(--spacing-sm) var(--spacing-md);
         font-size: 1.1rem;
         min-height: 44px; /* Tap target iOS */
-        display: flex;
+        display: flex !important;
         align-items: center;
+        color: var(--text-primary) !important;
+        background: transparent;
+        border-radius: var(--radius-sm);
+    }
+    
+    .nav-link:hover {
+        background: var(--bg-light) !important;
+        color: var(--primary-color) !important;
+    }
+    
+    /* CTA button en mobile */
+    .nav-link.nav-cta {
+        background: var(--primary-color) !important;
+        color: white !important;
+        margin-top: 1rem;
+    }
+    
+    .nav-link.nav-cta:hover {
+        background: var(--secondary-color) !important;
+    }
+    
+    /* Contenido del CTA */
+    .cta-text,
+    .cta-arrow {
+        display: inline !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 }
 
