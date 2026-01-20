@@ -76,7 +76,7 @@ Las 3 fotografías de la galería principal han sido actualizadas con nuevas im�
 ### 🌐 Despliegue en Cloudflare Pages
 - **Estado:** 🔄 En proceso automático
 - **Tiempo estimado:** 1-2 minutos
-- **URL de producción:** https://wildbreathing.com
+- **URL de producción:** https://wild-fitness.com
 
 ---
 
@@ -93,10 +93,10 @@ Cloudflare Pages detectará automáticamente el nuevo commit en `main` y despleg
 Visita tu sitio web y verifica las nuevas fotos:
 
 **📍 Galería de Fotos:**
-- https://wildbreathing.com/#qui-soc (scroll hacia abajo)
+- https://wild-fitness.com/#qui-soc (scroll hacia abajo)
 
 **📍 Foto de Laura (Sección "Sobre Mí"):**
-- https://wildbreathing.com/#qui-soc
+- https://wild-fitness.com/#qui-soc
 
 **💡 Tip:** Si no ves los cambios inmediatamente, prueba:
 1. Refrescar con `Ctrl + F5` (Windows) o `Cmd + Shift + R` (Mac)
@@ -162,7 +162,7 @@ Visita tu sitio web y verifica las nuevas fotos:
 
 ## 🎯 Resultado Esperado
 
-Cuando visites https://wildbreathing.com verás:
+Cuando visites https://wild-fitness.com verás:
 
 ✅ **Galería de Fotos:** 3 nuevas imágenes de Laura en acción  
 ✅ **Sección "Sobre Mí":** Foto actualizada de Laura entrenando  

@@ -37,21 +37,21 @@ CREATE POLICY "Allow public inserts" ON contact_submissions
 CREATE POLICY "Allow admin read all" ON contact_submissions
   FOR SELECT 
   USING (
-    auth.jwt() ->> 'email' IN ('laura@wildbreathing.com', 'info@wildbreathing.com')
+    auth.jwt() ->> 'email' IN ('laura@wild-fitness.com', 'info@wild-fitness.com')
   );
 
 -- Policy 3: Solo admins pueden actualizar registros (status, notes)
 CREATE POLICY "Allow admin updates" ON contact_submissions
   FOR UPDATE
   USING (
-    auth.jwt() ->> 'email' IN ('laura@wildbreathing.com', 'info@wildbreathing.com')
+    auth.jwt() ->> 'email' IN ('laura@wild-fitness.com', 'info@wild-fitness.com')
   );
 
 -- Policy 4: Solo admins pueden eliminar registros
 CREATE POLICY "Allow admin deletes" ON contact_submissions
   FOR DELETE
   USING (
-    auth.jwt() ->> 'email' IN ('laura@wildbreathing.com', 'info@wildbreathing.com')
+    auth.jwt() ->> 'email' IN ('laura@wild-fitness.com', 'info@wild-fitness.com')
   );
 
 -- ============================================
@@ -163,5 +163,5 @@ SEGURIDAD:
   ✅ RLS habilitado
   ✅ Inserts públicos permitidos (formulario web)
   ✅ Solo admins pueden leer/actualizar/eliminar
-  ✅ Emails admin: laura@wildbreathing.com, info@wildbreathing.com
+  ✅ Emails admin: laura@wild-fitness.com, info@wild-fitness.com
 */

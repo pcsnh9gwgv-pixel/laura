@@ -96,7 +96,7 @@ const emailResponse = await fetch('/api/send-welcome-email', {...});
    - No requiere autenticación
 
 2. **Solo Admins Leen** 🔒
-   - Solo `laura@wildbreathing.com` e `info@wildbreathing.com` pueden ver los contactos
+   - Solo `laura@wild-fitness.com` e `info@wild-fitness.com` pueden ver los contactos
    - Requiere autenticación
 
 3. **Solo Admins Modifican** 🔒
@@ -139,7 +139,7 @@ const emailResponse = await fetch('/api/send-welcome-email', {...});
 
 ### **Paso 1: Verificar que Supabase está inicializado**
 
-1. Visita: https://wildbreathing.com
+1. Visita: https://wild-fitness.com
 2. Abre la consola del navegador (F12 → Console)
 3. Deberías ver:
    ```
@@ -176,7 +176,7 @@ const emailResponse = await fetch('/api/send-welcome-email', {...});
 
 ### **Paso 4: Verificar en Admin Dashboard**
 
-1. Ve a https://wildbreathing.com/admin.html
+1. Ve a https://wild-fitness.com/admin.html
 2. Inicia sesión con credenciales de admin
 3. Ve a la sección "Contactes"
 4. Deberías ver el nuevo contacto en la lista
@@ -330,7 +330,7 @@ El formulario de contacto ahora guarda todos los envíos en Supabase automática
 
 **Para verificar:**
 1. Espera 2-3 minutos para el despliegue
-2. Visita https://wildbreathing.com
+2. Visita https://wild-fitness.com
 3. Envía un formulario de prueba
 4. Verifica en Supabase Table Editor
 5. Verifica en admin.html
