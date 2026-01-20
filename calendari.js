@@ -683,6 +683,30 @@ function handleBookingSubmit(e, activityId) {
     saveActivities();
     renderActivities();
     
+    // Enviar email de confirmación a través de Cloudflare Worker
+    const sendConfirmationEmail = async () => {
+        try {
+            const response = await fetch('/api/send-booking-confirmation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    booking: participant,
+                    activity: activity
+                })
+            });
+            
+            return response.ok;
+        } catch (error) {
+            console.error('Error enviando email de confirmación:', error);
+            return false;
+        }
+    };
+    
+    // Enviar email (no bloquear la UI)
+    const emailSent = await sendConfirmationEmail();
+    
     // Show success message
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
@@ -690,7 +714,10 @@ function handleBookingSubmit(e, activityId) {
             <div class="success-icon">✅</div>
             <h3>Reserva confirmada!</h3>
             <p>Hem registrat la teva plaça per a aquesta activitat.</p>
-            <p>Rebràs un email de confirmació a <strong>${participant.email}</strong></p>
+            <p>${emailSent ? 
+                `Rebràs un email de confirmació a <strong>${participant.email}</strong>` :
+                'No s\'ha pogut enviar l\'email de confirmació, però la teva reserva està registrada.'
+            }</p>
             <button class="btn-submit" onclick="document.getElementById('bookingModal').classList.remove('active')">
                 Tancar
             </button>
