@@ -31,7 +31,7 @@ crons = ["0 9 * * *"]
 # Bind para acceder a las actividades almacenadas
 [[kv_namespaces]]
 binding = "ACTIVITIES_KV"
-id = "TU_KV_NAMESPACE_ID"  # Obtener con: wrangler kv:namespace create ACTIVITIES_KV
+id = "39c0c498630345068512c72d4152920a"  # Obtener con: wrangler kv:namespace create ACTIVITIES_KV
 
 # ============================================
 # VARIABLES SECRETAS

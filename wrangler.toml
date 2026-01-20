@@ -3,7 +3,7 @@
 # Wild Fitness Email Service
 # ============================================
 
-name = "wild-fitness-email-worker"
+name = "laura"
 main = "worker.js"
 compatibility_date = "2024-01-20"
 
@@ -25,7 +25,7 @@ ENVIRONMENT = "production"
 # Crear con: wrangler kv:namespace create ACTIVITIES_KV
 [[kv_namespaces]]
 binding = "ACTIVITIES_KV"
-id = "TU_KV_NAMESPACE_ID"  # Reemplazar con tu ID del KV namespace
+id = "39c0c498630345068512c72d4152920a"  # Reemplazar con tu ID del KV namespace
 
 # Variables secretas (configurar con: npx wrangler secret put RESEND_API_KEY)
 # RESEND_API_KEY = "tu_api_key_aquí" # NO incluir aquí, usar el comando secret
