@@ -1,10 +1,18 @@
 // ============================================
 // CALENDARI D'ACTIVITATS - WILD FITNESS
-// Activity Management System
+// Activity Management System with Admin Authentication
 // ============================================
 
-// Activity Storage Key
+// Storage Keys
 const STORAGE_KEY = 'wild_fitness_activities';
+const AUTH_KEY = 'wild_fitness_admin_auth';
+const ADMIN_CREDENTIALS_KEY = 'wild_fitness_admin_credentials';
+
+// Default Admin Credentials (will be hashed)
+const DEFAULT_ADMIN = {
+    username: 'admin',
+    password: 'WildFitness2024!' // Cambiar esta contraseña en producción
+};
 
 // Activity Type Icons and Labels
 const ACTIVITY_TYPES = {
@@ -18,12 +26,19 @@ const ACTIVITY_TYPES = {
 // State Management
 let activities = [];
 let currentFilter = 'all';
+let isAdminLoggedIn = false;
 
 // ============================================
 // Initialize Calendar
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
     console.log('📅 Initializing Calendar...');
+    
+    // Initialize admin credentials if not exists
+    initAdminCredentials();
+    
+    // Check if admin is logged in
+    checkAdminAuth();
     
     // Load activities from localStorage
     loadActivities();
@@ -34,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render activities
     renderActivities();
     
+    // Update UI based on auth status
+    updateUIForAuthState();
+    
     // Set minimum date to today
     const dateInput = document.getElementById('activityDate');
     if (dateInput) {
@@ -41,6 +59,215 @@ document.addEventListener('DOMContentLoaded', () => {
         dateInput.min = today;
     }
 });
+
+// ============================================
+// Authentication System
+// ============================================
+function initAdminCredentials() {
+    const stored = localStorage.getItem(ADMIN_CREDENTIALS_KEY);
+    if (!stored) {
+        // Store default credentials (in production, use proper hashing)
+        const credentials = {
+            username: DEFAULT_ADMIN.username,
+            // Simple encoding (en producción usar bcrypt o similar)
+            passwordHash: btoa(DEFAULT_ADMIN.password)
+        };
+        localStorage.setItem(ADMIN_CREDENTIALS_KEY, JSON.stringify(credentials));
+        console.log('✅ Admin credentials initialized');
+        console.log('📝 Usuario: admin');
+        console.log('🔑 Contraseña: WildFitness2024!');
+    }
+}
+
+function checkAdminAuth() {
+    const authData = localStorage.getItem(AUTH_KEY);
+    if (authData) {
+        try {
+            const auth = JSON.parse(authData);
+            const now = new Date().getTime();
+            // Session expires after 24 hours
+            if (auth.expiry && auth.expiry > now) {
+                isAdminLoggedIn = true;
+                console.log('✅ Admin session active');
+                return;
+            }
+        } catch (e) {
+            console.error('❌ Error checking auth:', e);
+        }
+    }
+    isAdminLoggedIn = false;
+    localStorage.removeItem(AUTH_KEY);
+}
+
+function loginAdmin(username, password) {
+    const stored = localStorage.getItem(ADMIN_CREDENTIALS_KEY);
+    if (!stored) {
+        return { success: false, message: 'No s\'han trobat credencials d\'administrador' };
+    }
+    
+    try {
+        const credentials = JSON.parse(stored);
+        const passwordHash = btoa(password);
+        
+        if (username === credentials.username && passwordHash === credentials.passwordHash) {
+            // Create session with 24 hour expiry
+            const expiry = new Date().getTime() + (24 * 60 * 60 * 1000);
+            const authData = {
+                username: username,
+                expiry: expiry,
+                loginTime: new Date().toISOString()
+            };
+            localStorage.setItem(AUTH_KEY, JSON.stringify(authData));
+            isAdminLoggedIn = true;
+            console.log('✅ Admin login successful');
+            return { success: true, message: 'Login correcte' };
+        } else {
+            console.log('❌ Invalid credentials');
+            return { success: false, message: 'Usuari o contrasenya incorrectes' };
+        }
+    } catch (e) {
+        console.error('❌ Login error:', e);
+        return { success: false, message: 'Error en el login' };
+    }
+}
+
+function logoutAdmin() {
+    localStorage.removeItem(AUTH_KEY);
+    isAdminLoggedIn = false;
+    console.log('👋 Admin logged out');
+}
+
+function updateUIForAuthState() {
+    const adminPanel = document.getElementById('adminPanel');
+    const toggleAdminBtn = document.getElementById('toggleAdminBtn');
+    
+    if (isAdminLoggedIn) {
+        // Show admin button
+        if (toggleAdminBtn) {
+            toggleAdminBtn.style.display = 'flex';
+            toggleAdminBtn.innerHTML = `
+                <span>🔧</span>
+                <span>Admin</span>
+            `;
+        }
+    } else {
+        // Show login button
+        if (toggleAdminBtn) {
+            toggleAdminBtn.style.display = 'flex';
+            toggleAdminBtn.innerHTML = `
+                <span>🔐</span>
+                <span>Login Admin</span>
+            `;
+        }
+        // Hide admin panel
+        if (adminPanel) {
+            adminPanel.style.display = 'none';
+        }
+    }
+    
+    // Update delete buttons visibility
+    updateDeleteButtonsVisibility();
+}
+
+function updateDeleteButtonsVisibility() {
+    const deleteButtons = document.querySelectorAll('.btn-delete');
+    deleteButtons.forEach(btn => {
+        btn.style.display = isAdminLoggedIn ? 'block' : 'none';
+    });
+}
+
+function showLoginModal() {
+    const modal = document.getElementById('bookingModal');
+    const modalBody = document.getElementById('modalBody');
+    
+    modalBody.innerHTML = `
+        <div class="login-form-container">
+            <div class="login-header">
+                <div class="login-icon">🔐</div>
+                <h3>Login d'Administrador</h3>
+                <p>Introdueix les teves credencials per accedir al panell d'administració</p>
+            </div>
+            
+            <form id="loginForm" class="booking-form">
+                <div class="form-group">
+                    <label for="adminUsername">
+                        <span class="label-icon">👤</span>
+                        <span>Usuari</span>
+                        <span class="required">*</span>
+                    </label>
+                    <input type="text" id="adminUsername" name="username" required placeholder="admin" autocomplete="username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="adminPassword">
+                        <span class="label-icon">🔑</span>
+                        <span>Contrasenya</span>
+                        <span class="required">*</span>
+                    </label>
+                    <input type="password" id="adminPassword" name="password" required placeholder="••••••••" autocomplete="current-password">
+                </div>
+                
+                <div id="loginError" class="form-error" style="display: none; color: var(--error-color); margin-bottom: 1rem;"></div>
+                
+                <button type="submit" class="btn-submit">
+                    <span class="btn-icon">✓</span>
+                    <span>Iniciar Sessió</span>
+                </button>
+                
+                <div class="login-info" style="margin-top: 1rem; padding: 1rem; background: var(--bg-light); border-radius: var(--radius-sm); font-size: 0.9rem;">
+                    <strong>ℹ️ Credencials per defecte:</strong><br>
+                    <strong>Usuari:</strong> admin<br>
+                    <strong>Contrasenya:</strong> WildFitness2024!
+                </div>
+            </form>
+        </div>
+    `;
+    
+    modal.classList.add('active');
+    
+    // Focus on username field
+    setTimeout(() => {
+        document.getElementById('adminUsername')?.focus();
+    }, 100);
+    
+    // Handle login form submission
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleLogin(e);
+    });
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const username = formData.get('username');
+    const password = formData.get('password');
+    
+    const result = loginAdmin(username, password);
+    
+    if (result.success) {
+        // Close modal
+        document.getElementById('bookingModal').classList.remove('active');
+        
+        // Update UI
+        updateUIForAuthState();
+        
+        // Show success message
+        alert('✅ Login correcte! Ara pots gestionar les activitats.');
+        
+        // Render activities to show delete buttons
+        renderActivities();
+    } else {
+        // Show error
+        const errorDiv = document.getElementById('loginError');
+        if (errorDiv) {
+            errorDiv.textContent = result.message;
+            errorDiv.style.display = 'block';
+        }
+    }
+}
 
 // ============================================
 // Event Listeners
@@ -54,9 +281,16 @@ function initEventListeners() {
     
     if (toggleAdminBtn) {
         toggleAdminBtn.addEventListener('click', () => {
-            adminPanel.style.display = adminPanel.style.display === 'none' ? 'block' : 'none';
-            if (adminPanel.style.display === 'block') {
-                adminPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (!isAdminLoggedIn) {
+                // Show login modal
+                showLoginModal();
+            } else {
+                // Toggle admin panel
+                const isVisible = adminPanel.style.display !== 'none';
+                adminPanel.style.display = isVisible ? 'none' : 'block';
+                if (!isVisible) {
+                    adminPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
         });
     }
@@ -114,11 +348,11 @@ function initEventListeners() {
 function loadActivities() {
     try {
         const stored = localStorage.getItem(STORAGE_KEY);
-        activities = stored ? JSON.parse(stored) : getSampleActivities();
+        activities = stored ? JSON.parse(stored) : [];
         console.log('✅ Activities loaded:', activities.length);
     } catch (error) {
         console.error('❌ Error loading activities:', error);
-        activities = getSampleActivities();
+        activities = [];
     }
 }
 
@@ -131,61 +365,13 @@ function saveActivities() {
     }
 }
 
-function getSampleActivities() {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const nextWeek = new Date(today);
-    nextWeek.setDate(nextWeek.getDate() + 7);
-    
-    return [
-        {
-            id: Date.now() + 1,
-            title: 'Trail Running Matinal - Parc Natural Cadí-Moixeró',
-            type: 'trail',
-            date: tomorrow.toISOString().split('T')[0],
-            time: '08:00',
-            location: 'Bagà - Parc Natural Cadí-Moixeró',
-            latitude: '42.304482',
-            longitude: '1.863868',
-            capacity: 12,
-            enrolled: 7,
-            description: 'Sortida matinal de trail running per camins del Parc Natural. Nivell intermedi-avançat. Distància aproximada: 15km amb 600m de desnivell positiu. Porteu aigua, esmorzar lleuger i calçat adequat.',
-            participants: []
-        },
-        {
-            id: Date.now() + 2,
-            title: 'Trekking Pirineus - Vall de Núria',
-            type: 'trekking',
-            date: nextWeek.toISOString().split('T')[0],
-            time: '09:00',
-            location: 'Estació de Núria, Girona',
-            latitude: '42.405833',
-            longitude: '2.161944',
-            capacity: 15,
-            enrolled: 10,
-            description: 'Excursió guiada per la Vall de Núria. Sortida des de l\'estació fins al Pic de Finestrelles. Nivell mitjà. Porteu menjar per tot el dia, protecció solar i roba d\'abric.',
-            participants: []
-        },
-        {
-            id: Date.now() + 3,
-            title: 'Sessió d\'Entrenament Funcional',
-            type: 'training',
-            date: tomorrow.toISOString().split('T')[0],
-            time: '18:30',
-            location: 'Parc de la Devesa, Girona',
-            latitude: '41.993611',
-            longitude: '2.826667',
-            capacity: 10,
-            enrolled: 5,
-            description: 'Entrenament funcional orientat a trail runners. Treballarem força, potència i mobilitat. Material proporcionat. Durada: 60 minuts.',
-            participants: []
-        }
-    ];
-}
-
 function handleActivitySubmit(e) {
     e.preventDefault();
+    
+    if (!isAdminLoggedIn) {
+        alert('❌ Has d\'estar autenticat per crear activitats');
+        return;
+    }
     
     const formData = new FormData(e.target);
     const activity = {
@@ -200,7 +386,9 @@ function handleActivitySubmit(e) {
         capacity: parseInt(formData.get('capacity')),
         enrolled: 0,
         description: formData.get('description') || '',
-        participants: []
+        participants: [],
+        createdAt: new Date().toISOString(),
+        createdBy: 'admin'
     };
     
     activities.push(activity);
@@ -217,6 +405,11 @@ function handleActivitySubmit(e) {
 }
 
 function deleteActivity(id) {
+    if (!isAdminLoggedIn) {
+        alert('❌ Has d\'estar autenticat per eliminar activitats');
+        return;
+    }
+    
     if (confirm('Segur que vols eliminar aquesta activitat?')) {
         activities = activities.filter(a => a.id !== id);
         saveActivities();
@@ -250,7 +443,7 @@ function renderActivities() {
             <div class="empty-state">
                 <div class="empty-icon">📅</div>
                 <h3>No hi ha activitats ${currentFilter !== 'all' ? 'per aquest tipus' : 'programades'}</h3>
-                <p>De moment no hi ha cap activitat al calendari. Torna aviat per veure les pròximes sortides!</p>
+                <p>${isAdminLoggedIn ? 'Utilitza el panell d\'administració per crear noves activitats.' : 'De moment no hi ha cap activitat al calendari. Torna aviat per veure les pròximes sortides!'}</p>
             </div>
         `;
         return;
@@ -266,13 +459,15 @@ function renderActivities() {
         });
     });
     
-    // Add event listeners to delete buttons
-    container.querySelectorAll('.btn-delete').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const id = parseInt(e.target.closest('[data-id]').dataset.id);
-            deleteActivity(id);
+    // Add event listeners to delete buttons (only if admin)
+    if (isAdminLoggedIn) {
+        container.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.target.closest('[data-id]').dataset.id);
+                deleteActivity(id);
+            });
         });
-    });
+    }
     
     // Add event listeners to map buttons
     container.querySelectorAll('.btn-map').forEach(btn => {
@@ -362,9 +557,11 @@ function createActivityCard(activity) {
                         <span>🗺️</span>
                     </button>
                 ` : ''}
-                <button class="btn-delete" title="Eliminar activitat">
-                    <span>🗑️</span>
-                </button>
+                ${isAdminLoggedIn ? `
+                    <button class="btn-delete" title="Eliminar activitat">
+                        <span>🗑️</span>
+                    </button>
+                ` : ''}
             </div>
         </div>
     `;
@@ -502,3 +699,5 @@ function handleBookingSubmit(e, activityId) {
 }
 
 console.log('✅ Calendar JavaScript loaded');
+console.log('🔐 Sistema d\'autenticació activat');
+console.log('📝 Credencials per defecte: admin / WildFitness2024!');
