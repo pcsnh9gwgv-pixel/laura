@@ -81,7 +81,7 @@
                     <h2 class="section-title">Reserva la teva valoració gratuïta</h2>
                     <p class="form-intro">Explica'm què busques i et contactaré en menys de 24h per agendar la teva valoració inicial.</p>
                     
-                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <form class="contact-form" id="contactForm">
                         <div class="form-group">
                             <label for="name">Nom complet *</label>
                             <input type="text" id="name" name="name" required placeholder="El teu nom">
@@ -289,14 +289,52 @@
 
     <!-- Scripts -->
     <script src="script.js"></script>
-    <script>
-        // Form handling
+    <script type="module">
+        import { supabase } from './supabase-config.js';
+
+        // Form handling with Supabase
         const contactForm = document.getElementById('contactForm');
+        const submitButton = contactForm.querySelector('.btn-submit');
         
         if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                // You can add custom validation or tracking here
-                console.log('Form submitted');
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Disable button
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<span>Enviant...</span>';
+                
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    location: document.getElementById('location').value,
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value,
+                    created_at: new Date().toISOString()
+                };
+                
+                try {
+                    // Insert into Supabase
+                    const { data, error } = await supabase
+                        .from('contact_submissions')
+                        .insert([formData]);
+                    
+                    if (error) throw error;
+                    
+                    // Success
+                    alert('✅ Formulari enviat correctament! Et contactaré aviat.');
+                    contactForm.reset();
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('❌ Error al enviar el formulari. Prova de contactar per WhatsApp: https://wa.me/34640915772');
+                } finally {
+                    // Re-enable button
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<span>Enviar Sol·licitud</span><span class="btn-icon">→</span>';
+                }
             });
         }
 
