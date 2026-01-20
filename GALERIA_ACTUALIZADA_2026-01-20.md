@@ -106,7 +106,7 @@ La galería ha sido **actualizada de 3 a 5 fotografías** con imágenes reales d
 ### 🌐 Cloudflare Pages
 - **Estado:** 🔄 Desplegando automáticamente
 - **Tiempo estimado:** 1-2 minutos
-- **URL de producción:** https://wildbreathing.com
+- **URL de producción:** https://wild-fitness.com
 
 ---
 
@@ -118,7 +118,7 @@ La galería ha sido **actualizada de 3 a 5 fotografías** con imágenes reales d
 Cloudflare Pages desplegará automáticamente los cambios.
 
 **Paso 2: Visita el sitio web**  
-👉 https://wildbreathing.com
+👉 https://wild-fitness.com
 
 **Paso 3: Scroll hacia abajo**  
 Busca la sección de "Galería" (después de "Últims Articles del Blog")
@@ -237,7 +237,7 @@ Las 5 fotos se verán así en diferentes dispositivos:
 Las 5 nuevas fotografías están ahora en producción y se verán en el sitio web en los próximos 1-2 minutos. El diseño responsive asegura que se vean perfectas en todos los dispositivos.
 
 **URL para verificar:**  
-👉 https://wildbreathing.com (scroll hacia abajo hasta la galería)
+👉 https://wild-fitness.com (scroll hacia abajo hasta la galería)
 
 ---
 
