@@ -49,47 +49,58 @@ window.addEventListener('scroll', () => {
 // ============================================
 // Mobile Navigation Toggle
 // ============================================
-const navToggle = document.getElementById('navToggle');
-const mainNav = document.getElementById('mainNav');
-const navList = mainNav?.querySelector('.nav-list');
+document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+    const navList = mainNav?.querySelector('.nav-list');
 
-if (navToggle && navList) {
-    navToggle.addEventListener('click', () => {
-        const isActive = navList.classList.toggle('active');
-        navToggle.setAttribute('aria-expanded', isActive);
-        
-        // Prevent body scroll when menu is open
-        document.body.style.overflow = isActive ? 'hidden' : '';
-    });
+    console.log('Navigation elements:', { navToggle, mainNav, navList }); // Debug
 
-    // Close menu when clicking on a link
-    const navLinks = navList.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navList.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
+    if (navToggle && navList) {
+        navToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isActive = navList.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', isActive);
+            
+            console.log('Menu toggled:', isActive); // Debug
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = isActive ? 'hidden' : '';
         });
-    });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!mainNav.contains(e.target) && navList.classList.contains('active')) {
-            navList.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-        }
-    });
+        // Close menu when clicking on a link
+        const navLinks = navList.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
 
-    // Close menu on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navList.classList.contains('active')) {
-            navList.classList.remove('active');
-            navToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-        }
-    });
-}
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mainNav.contains(e.target) && navList.classList.contains('active')) {
+                navList.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navList.classList.contains('active')) {
+                navList.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+        });
+    } else {
+        console.error('Navigation elements not found!'); // Debug
+    }
+});
 
 // ============================================
 // Enhanced Smooth Scroll
