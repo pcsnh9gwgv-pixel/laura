@@ -30,16 +30,16 @@ Este documento explica cómo configurar el sistema completo de envío de emails 
 2. Crear cuenta con email de Laura
 3. Verificar email
 
-### 2️⃣ Verificar Dominio wildbreathing.com
+### 2️⃣ Verificar Dominio wild-fitness.com
 
 #### En Resend:
 1. Ir a **Domains** > **Add Domain**
-2. Introducir: `wildbreathing.com`
+2. Introducir: `wild-fitness.com`
 3. Resend te dará los DNS records necesarios
 
 #### En Cloudflare:
 1. Ir al Dashboard de Cloudflare
-2. Seleccionar dominio `wildbreathing.com`
+2. Seleccionar dominio `wild-fitness.com`
 3. Ir a **DNS** > **Records**
 4. Añadir estos records (los valores exactos los da Resend):
 
@@ -120,18 +120,18 @@ wrangler deploy
 # ✨ Successfully deployed worker wild-fitness-email-worker
 # 🌍 Available at:
 #    https://wild-fitness-email-worker.tu-usuario.workers.dev
-#    https://wildbreathing.com/api/*
+#    https://wild-fitness.com/api/*
 ```
 
 ### 8️⃣ Configurar Rutas en Cloudflare Dashboard
 
 1. Ir a **Cloudflare Dashboard**
-2. Seleccionar dominio `wildbreathing.com`
+2. Seleccionar dominio `wild-fitness.com`
 3. Ir a **Workers Routes**
 4. Añadir ruta:
-   - **Route**: `wildbreathing.com/api/*`
+   - **Route**: `wild-fitness.com/api/*`
    - **Worker**: `wild-fitness-email-worker`
-   - **Zone**: `wildbreathing.com`
+   - **Zone**: `wild-fitness.com`
 
 ---
 
@@ -185,11 +185,11 @@ curl -X POST http://localhost:8787/api/send-booking-confirmation \
 
 ### Probar desde la Web
 
-1. Abrir `wildbreathing.com`
+1. Abrir `wild-fitness.com`
 2. Rellenar formulario de contacto
 3. Verificar:
    - ✅ Email de bienvenida recibido
-   - ✅ Notificación al admin (info@wildbreathing.com)
+   - ✅ Notificación al admin (info@wild-fitness.com)
 4. Ir al calendario y hacer una reserva
 5. Verificar:
    - ✅ Email de confirmación recibido
@@ -238,7 +238,7 @@ wrangler secret put RESEND_API_KEY
 3. Intentar verificar de nuevo en Resend
 
 ### Problema: "CORS error"
-**Solución**: El Worker ya tiene configurado CORS. Verificar que la petición viene desde `wildbreathing.com`
+**Solución**: El Worker ya tiene configurado CORS. Verificar que la petición viene desde `wild-fitness.com`
 
 ### Problema: Emails no llegan
 **Soluciones**:
@@ -282,7 +282,7 @@ Para modificar el contenido HTML de los emails, editar estas funciones en `worke
 ### Buenas Prácticas Implementadas
 
 ✅ **API Key como Secret**: No está en el código
-✅ **CORS configurado**: Solo acepta peticiones de wildbreathing.com
+✅ **CORS configurado**: Solo acepta peticiones de wild-fitness.com
 ✅ **Validación de datos**: Verifica campos requeridos
 ✅ **Rate limiting**: Cloudflare protege contra abuso
 ✅ **DKIM/SPF**: Configurado automáticamente por Resend
@@ -294,14 +294,14 @@ Para modificar el contenido HTML de los emails, editar estas funciones en `worke
 ### Email de Remitente
 Actualmente configurado como:
 ```
-Wild Fitness <noreply@wildbreathing.com>
+Wild Fitness <noreply@wild-fitness.com>
 ```
 
 Para cambiar, editar `CONFIG.fromEmail` en `worker.js`.
 
 ### Email del Admin
 ```
-info@wildbreathing.com
+info@wild-fitness.com
 ```
 
 Para cambiar, editar `CONFIG.adminEmail` en `worker.js`.
@@ -328,7 +328,7 @@ Si se supera, upgrade a plan Pro ($20/mes para 50,000 emails).
 ## ✅ Checklist de Configuración
 
 - [ ] Cuenta en Resend creada
-- [ ] Dominio wildbreathing.com verificado en Resend
+- [ ] Dominio wild-fitness.com verificado en Resend
 - [ ] DNS records configurados en Cloudflare
 - [ ] API Key de Resend obtenida
 - [ ] Wrangler instalado

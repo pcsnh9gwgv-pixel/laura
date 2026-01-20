@@ -9,7 +9,7 @@ compatibility_date = "2024-01-20"
 
 # Rutas del Worker
 routes = [
-  { pattern = "wildbreathing.com/api/*", zone_name = "wildbreathing.com" }
+  { pattern = "wild-fitness.com/api/*", zone_name = "wild-fitness.com" }
 ]
 
 # Variables de entorno (configurar en Cloudflare Dashboard)
@@ -38,15 +38,15 @@ ENVIRONMENT = "production"
 #    npx wrangler deploy
 #
 # 5. El Worker estará disponible en:
-#    https://wildbreathing.com/api/send-welcome-email
-#    https://wildbreathing.com/api/send-booking-confirmation
+#    https://wild-fitness.com/api/send-welcome-email
+#    https://wild-fitness.com/api/send-booking-confirmation
 #
 # ==================================================
 # OBTENER API KEY DE RESEND:
 # ==================================================
 #
 # 1. Crear cuenta en: https://resend.com/signup
-# 2. Verificar dominio wildbreathing.com
+# 2. Verificar dominio wild-fitness.com
 # 3. Añadir estos DNS records en Cloudflare:
 #    - TXT record para verificación
 #    - MX records para recepción
