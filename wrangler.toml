@@ -17,6 +17,16 @@ routes = [
 [vars]
 ENVIRONMENT = "production"
 
+# ============================================
+# KV NAMESPACE - Almacenamiento de Actividades
+# ============================================
+
+# Bind para sincronizar actividades entre frontend y cron worker
+# Crear con: wrangler kv:namespace create ACTIVITIES_KV
+[[kv_namespaces]]
+binding = "ACTIVITIES_KV"
+id = "TU_KV_NAMESPACE_ID"  # Reemplazar con tu ID del KV namespace
+
 # Variables secretas (configurar con: npx wrangler secret put RESEND_API_KEY)
 # RESEND_API_KEY = "tu_api_key_aquí" # NO incluir aquí, usar el comando secret
 
@@ -30,16 +40,21 @@ ENVIRONMENT = "production"
 # 2. Login en Cloudflare:
 #    npx wrangler login
 #
-# 3. Configurar API Key de Resend:
+# 3. Crear KV Namespace (para sincronizar actividades):
+#    wrangler kv:namespace create ACTIVITIES_KV
+#    Copiar el ID que te devuelve y pegarlo arriba en "id"
+#
+# 4. Configurar API Key de Resend:
 #    npx wrangler secret put RESEND_API_KEY
 #    (Pegar tu API key de https://resend.com/api-keys)
 #
-# 4. Deploy del Worker:
+# 5. Deploy del Worker:
 #    npx wrangler deploy
 #
-# 5. El Worker estará disponible en:
+# 6. El Worker estará disponible en:
 #    https://wild-fitness.com/api/send-welcome-email
 #    https://wild-fitness.com/api/send-booking-confirmation
+#    https://wild-fitness.com/api/sync-activities
 #
 # ==================================================
 # OBTENER API KEY DE RESEND:

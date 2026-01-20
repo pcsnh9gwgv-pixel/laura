@@ -359,9 +359,42 @@ function loadActivities() {
 function saveActivities() {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(activities));
-        console.log('💾 Activities saved');
+        console.log('💾 Activities saved to localStorage');
+        
+        // Sincronizar con el servidor (KV Storage) para emails programados
+        syncActivitiesToServer();
     } catch (error) {
         console.error('❌ Error saving activities:', error);
+    }
+}
+
+// Sincronizar actividades con el servidor
+async function syncActivitiesToServer() {
+    try {
+        const apiUrl = window.location.hostname === 'localhost' || window.location.hostname.includes('sandbox')
+            ? 'http://localhost:8787/api/sync-activities'  // Desarrollo local
+            : 'https://wild-fitness.com/api/sync-activities';  // Producción
+        
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                activities: activities,
+                timestamp: new Date().toISOString()
+            })
+        });
+        
+        if (response.ok) {
+            const result = await response.json();
+            console.log(`✅ Activitats sincronitzades amb el servidor: ${result.count}`);
+        } else {
+            console.warn('⚠️ No s\'ha pogut sincronitzar amb el servidor:', response.statusText);
+        }
+    } catch (error) {
+        // No mostrar error al usuario, solo log
+        console.warn('⚠️ Sincronització amb servidor no disponible:', error.message);
     }
 }
 

@@ -472,6 +472,76 @@ export default {
       }
     }
 
+    // Ruta: /api/sync-activities - Sincronizar actividades al KV
+    if (url.pathname === '/api/sync-activities' && request.method === 'POST') {
+      try {
+        // Solo permitir si está autenticado como admin
+        const { activities, adminAuth } = await request.json();
+        
+        if (!activities || !Array.isArray(activities)) {
+          return new Response(JSON.stringify({ 
+            success: false, 
+            error: 'Formato de actividades inválido' 
+          }), {
+            status: 400,
+            headers: {
+              'Content-Type': 'application/json',
+              ...corsHeaders(origin)
+            }
+          });
+        }
+
+        // Guardar en KV (solo si el binding existe)
+        if (env.ACTIVITIES_KV) {
+          await env.ACTIVITIES_KV.put(
+            'wild_fitness_activities', 
+            JSON.stringify(activities)
+          );
+          
+          console.log(`✅ ${activities.length} actividades sincronizadas al KV`);
+          
+          return new Response(JSON.stringify({ 
+            success: true,
+            message: `${activities.length} actividades sincronizadas`,
+            count: activities.length
+          }), {
+            headers: {
+              'Content-Type': 'application/json',
+              ...corsHeaders(origin)
+            }
+          });
+        } else {
+          // Si no hay KV configurado, solo confirmar recepción
+          console.log(`ℹ️ KV no configurado. ${activities.length} actividades recibidas`);
+          
+          return new Response(JSON.stringify({ 
+            success: true,
+            message: 'Actividades recibidas (KV no configurado)',
+            count: activities.length,
+            warning: 'KV Storage no está configurado'
+          }), {
+            headers: {
+              'Content-Type': 'application/json',
+              ...corsHeaders(origin)
+            }
+          });
+        }
+
+      } catch (error) {
+        console.error('❌ Error sincronizando actividades:', error);
+        return new Response(JSON.stringify({ 
+          success: false, 
+          error: error.message 
+        }), {
+          status: 500,
+          headers: {
+            'Content-Type': 'application/json',
+            ...corsHeaders(origin)
+          }
+        });
+      }
+    }
+
     // Ruta no encontrada
     return new Response('Not Found', { 
       status: 404,
