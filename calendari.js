@@ -34,11 +34,21 @@ let isAdminLoggedIn = false;
 document.addEventListener('DOMContentLoaded', () => {
     console.log('📅 Initializing Calendar...');
     
+    // Check if accessed from admin panel
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdminMode = urlParams.get('admin') === 'true';
+    
     // Initialize admin credentials if not exists
     initAdminCredentials();
     
     // Check if admin is logged in
     checkAdminAuth();
+    
+    // Show admin button only if in admin mode and authenticated
+    const adminBtn = document.getElementById('toggleAdminBtn');
+    if (adminBtn && isAdminMode && isAdminLoggedIn) {
+        adminBtn.style.display = 'flex';
+    }
     
     // Load activities from localStorage
     loadActivities();

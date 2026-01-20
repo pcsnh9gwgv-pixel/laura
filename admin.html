@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Panel d'administració Wild Fitness - Accés restringit">
+    
+    <title>Admin - Wild Fitness</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="calendari.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Admin Login Page Styles */
+        .admin-login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2d7d7d 0%, #3fb5b5 100%);
+            padding: 20px;
+        }
+        
+        .admin-login-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+            width: 100%;
+            padding: 40px;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .admin-login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .admin-login-logo {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .admin-login-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2d7d7d;
+            margin: 0 0 10px;
+        }
+        
+        .admin-login-subtitle {
+            font-size: 14px;
+            color: #64748b;
+            margin: 0;
+        }
+        
+        .admin-login-form {
+            margin-top: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #2d7d7d;
+            box-shadow: 0 0 0 3px rgba(45, 125, 125, 0.1);
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: #2d7d7d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .btn-login:hover {
+            background: #236565;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 125, 125, 0.3);
+        }
+        
+        .btn-login:active {
+            transform: translateY(0);
+        }
+        
+        .login-error {
+            background: #fee;
+            color: #c33;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+            border-left: 4px solid #c33;
+        }
+        
+        .login-error.show {
+            display: block;
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 25px;
+        }
+        
+        .back-link a {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link a:hover {
+            color: #2d7d7d;
+        }
+        
+        .credentials-info {
+            background: #f0f9f9;
+            border-left: 4px solid #2d7d7d;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #475569;
+        }
+        
+        .credentials-info strong {
+            color: #2d7d7d;
+        }
+        
+        /* Hidden content that shows after login */
+        .admin-dashboard {
+            display: none;
+        }
+        
+        .admin-dashboard.active {
+            display: block;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, #2d7d7d 0%, #3fb5b5 100%);
+            padding: 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .btn-logout {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-logout:hover {
+            background: white;
+            color: #2d7d7d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="admin-login-page" id="loginPage">
+        <div class="admin-login-container">
+            <div class="admin-login-header">
+                <div class="admin-login-logo">🔐</div>
+                <h1 class="admin-login-title">Panell d'Administració</h1>
+                <p class="admin-login-subtitle">Wild Fitness - Accés restringit</p>
+            </div>
+            
+            <div class="login-error" id="loginError">
+                ❌ Credencials incorrectes. Si us plau, torna-ho a intentar.
+            </div>
+            
+            <form class="admin-login-form" id="adminLoginForm">
+                <div class="form-group">
+                    <label for="username">Usuari</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        autocomplete="username"
+                        placeholder="Introdueix el teu usuari"
+                        required
+                        autofocus
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Contrasenya</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        autocomplete="current-password"
+                        placeholder="Introdueix la teva contrasenya"
+                        required
+                    >
+                </div>
+                
+                <button type="submit" class="btn-login">
+                    🔓 Iniciar Sessió
+                </button>
+            </form>
+            
+            <div class="credentials-info">
+                <strong>ℹ️ Nota:</strong> Si no tens credencials d'accés, contacta amb l'administrador del sistema.
+            </div>
+            
+            <div class="back-link">
+                <a href="/calendari.html">← Tornar al Calendari Públic</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard (Hidden until login) -->
+    <div class="admin-dashboard" id="adminDashboard">
+        <div class="admin-header">
+            <h1>🏔️ Wild Fitness - Admin</h1>
+            <button class="btn-logout" id="logoutBtn">
+                🚪 Tancar Sessió
+            </button>
+        </div>
+        
+        <!-- Include the full calendar interface here -->
+        <iframe 
+            src="/calendari.html?admin=true" 
+            style="width: 100%; height: calc(100vh - 80px); border: none;"
+            id="adminFrame"
+        ></iframe>
+    </div>
+
+    <script src="calendari.js"></script>
+    <script>
+        // Admin login page specific script
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginPage = document.getElementById('loginPage');
+            const adminDashboard = document.getElementById('adminDashboard');
+            const loginForm = document.getElementById('adminLoginForm');
+            const loginError = document.getElementById('loginError');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            // Check if already logged in
+            const adminAuth = JSON.parse(localStorage.getItem('wild_fitness_admin_auth') || 'null');
+            if (adminAuth && adminAuth.token && new Date(adminAuth.expiresAt) > new Date()) {
+                showDashboard();
+            }
+            
+            // Handle login form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                if (validateCredentials(username, password)) {
+                    // Save auth token
+                    const auth = {
+                        token: btoa(username + ':' + Date.now()),
+                        username: username,
+                        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+                    };
+                    localStorage.setItem('wild_fitness_admin_auth', JSON.stringify(auth));
+                    
+                    // Hide error if shown
+                    loginError.classList.remove('show');
+                    
+                    // Show dashboard
+                    showDashboard();
+                } else {
+                    // Show error
+                    loginError.classList.add('show');
+                    
+                    // Shake the form
+                    loginForm.style.animation = 'shake 0.5s ease';
+                    setTimeout(() => {
+                        loginForm.style.animation = '';
+                    }, 500);
+                }
+            });
+            
+            // Handle logout
+            logoutBtn.addEventListener('click', function() {
+                localStorage.removeItem('wild_fitness_admin_auth');
+                showLogin();
+            });
+            
+            function validateCredentials(username, password) {
+                // Get stored credentials or use defaults
+                const credentials = JSON.parse(
+                    localStorage.getItem('wild_fitness_admin_credentials') || 
+                    '{"username":"admin","password":"' + btoa('WildFitness2024!') + '"}'
+                );
+                
+                return username === credentials.username && 
+                       btoa(password) === credentials.password;
+            }
+            
+            function showDashboard() {
+                loginPage.style.display = 'none';
+                adminDashboard.classList.add('active');
+                
+                // Reload iframe to ensure admin mode
+                const iframe = document.getElementById('adminFrame');
+                iframe.src = iframe.src;
+            }
+            
+            function showLogin() {
+                loginPage.style.display = 'flex';
+                adminDashboard.classList.remove('active');
+                
+                // Clear form
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                loginError.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
