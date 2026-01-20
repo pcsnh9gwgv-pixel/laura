@@ -871,6 +871,18 @@
             // Check if already logged in
             checkAuth();
             
+            // ============================================
+            // SYNC: Listen for changes from other tabs/windows
+            // This enables real-time updates across admin and public calendar
+            // ============================================
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'wild_fitness_activities' && e.newValue !== e.oldValue) {
+                    console.log('🔄 Activitats actualitzades des d\'un altre panell');
+                    loadActivities();
+                    updateDashboard();
+                }
+            });
+            
             // Login form handler
             loginForm.addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -969,6 +981,15 @@
             
             function saveActivities() {
                 localStorage.setItem('wild_fitness_activities', JSON.stringify(activities));
+                
+                // Trigger storage event for same-window synchronization
+                // (storage event doesn't fire in the same window by default)
+                window.dispatchEvent(new StorageEvent('storage', {
+                    key: 'wild_fitness_activities',
+                    newValue: JSON.stringify(activities),
+                    url: window.location.href
+                }));
+                
                 updateDashboard();
                 syncActivitiesToServer();
             }

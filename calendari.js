@@ -68,6 +68,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const today = new Date().toISOString().split('T')[0];
         dateInput.min = today;
     }
+    
+    // ============================================
+    // SYNC: Listen for changes from admin panel
+    // This enables real-time updates when admin creates/edits/deletes activities
+    // ============================================
+    window.addEventListener('storage', (e) => {
+        if (e.key === STORAGE_KEY && e.newValue !== e.oldValue) {
+            console.log('🔄 Activitats actualitzades des d\'un altre panell');
+            loadActivities();
+            renderActivities();
+            
+            // Show notification to user
+            showNotification('🔄 Calendari actualitzat', 'Les activitats s\'han actualitzat automàticament');
+        }
+    });
+    
+    // Also check for updates periodically (fallback)
+    setInterval(() => {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        const currentStored = JSON.stringify(activities);
+        if (stored !== currentStored) {
+            console.log('🔄 Actualització periòdica detectada');
+            loadActivities();
+            renderActivities();
+        }
+    }, 5000); // Check every 5 seconds
 });
 
 // ============================================
@@ -369,6 +395,15 @@ function loadActivities() {
 function saveActivities() {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(activities));
+        
+        // Trigger storage event for same-window synchronization
+        // (storage event doesn't fire in the same window by default)
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: STORAGE_KEY,
+            newValue: JSON.stringify(activities),
+            url: window.location.href
+        }));
+        
         console.log('💾 Activities saved to localStorage');
         
         // Sincronizar con el servidor (KV Storage) para emails programados
@@ -768,6 +803,104 @@ function handleBookingSubmit(e, activityId) {
     `;
 }
 
+// ============================================
+// Notification System
+// ============================================
+function showNotification(title, message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'toast-notification';
+    notification.innerHTML = `
+        <div class="toast-header">
+            <strong>${title}</strong>
+            <button class="toast-close" onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+        <div class="toast-body">${message}</div>
+    `;
+    
+    // Add styles if not exist
+    if (!document.getElementById('toast-styles')) {
+        const style = document.createElement('style');
+        style.id = 'toast-styles';
+        style.textContent = `
+            .toast-notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                min-width: 300px;
+                max-width: 400px;
+                z-index: 9999;
+                animation: slideInRight 0.3s ease;
+                border-left: 4px solid #2d7d7d;
+            }
+            .toast-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 15px 10px;
+                border-bottom: 1px solid #f1f5f9;
+            }
+            .toast-header strong {
+                color: #1e293b;
+                font-size: 14px;
+            }
+            .toast-close {
+                background: transparent;
+                border: none;
+                font-size: 24px;
+                color: #64748b;
+                cursor: pointer;
+                padding: 0;
+                width: 24px;
+                height: 24px;
+                line-height: 1;
+            }
+            .toast-close:hover {
+                color: #1e293b;
+            }
+            .toast-body {
+                padding: 10px 15px 15px;
+                color: #64748b;
+                font-size: 13px;
+            }
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Add to body
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
+
 console.log('✅ Calendar JavaScript loaded');
 console.log('🔐 Sistema d\'autenticació activat');
 console.log('📝 Credencials per defecte: admin / WildFitness2024!');
+console.log('🔄 Sincronització automàtica activada');
