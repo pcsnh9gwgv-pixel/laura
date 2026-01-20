@@ -127,8 +127,6 @@ function displayProgramInfo(program) {
 function calculateTotal(price) {
     const total = price; // El precio ya incluye IVA
     
-    document.getElementById('subtotal').textContent = `€${total.toFixed(2)}`;
-    document.getElementById('iva').textContent = `€0.00`;
     document.getElementById('total').textContent = `€${total.toFixed(2)}`;
 }
 
